@@ -57,6 +57,7 @@
             expand="block"
             color="primary"
             (click)="onLogin()"
+            [disabled]="!f.valid"
           >
             <!--*ngIf="!isLoading"-->
             Entrar
