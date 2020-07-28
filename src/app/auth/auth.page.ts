@@ -2,6 +2,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "./auth.service";
 import { Component, OnInit } from "@angular/core";
 import { LoadingController } from "@ionic/angular";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: "app-auth",
@@ -20,6 +21,7 @@ export class AuthPage implements OnInit {
   ngOnInit() {}
 
   onLogin() {
+    
     this.isLoading = true;
     this.authService.login();
     this.loadingCtrl
@@ -33,5 +35,10 @@ export class AuthPage implements OnInit {
         }, 1500);
       });
     
+  }
+
+  onSubmit(form:NgForm){
+    console.log(form);
+
   }
 }
