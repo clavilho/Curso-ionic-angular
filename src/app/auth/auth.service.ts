@@ -1,20 +1,27 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class AuthService {
   private _userIsAuthenticated = true;
- 
-  get userIsAuthenticated(){
+  private _userId = 'xyz';
+
+  get userIsAuthenticated() {
     return this._userIsAuthenticated;
   }
+
+  get userId() {
+    return this._userId;
+  }
+
   constructor() {}
 
   login() {
     this._userIsAuthenticated = true;
   }
+
   logout() {
-    this._userIsAuthenticated = true;
+    this._userIsAuthenticated = false;
   }
 }

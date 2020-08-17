@@ -1,9 +1,7 @@
-import { PlaceDetailPage } from './discover/place-detail/place-detail.page';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { PlacesPage } from './places.page';
-import { pathToFileURL } from 'url';
 
 const routes: Routes = [
   {
@@ -52,15 +50,14 @@ const routes: Routes = [
     ]
   },
   {
-    path:'',
-    redirectTo:'/places/tabs/discover',
-    pathMatch:'full'
+    path: '',
+    redirectTo: '/places/tabs/discover',
+    pathMatch: 'full'
   }
-  
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class PlacesPageRoutingModule {}
+export class PlacesRoutingModule {}

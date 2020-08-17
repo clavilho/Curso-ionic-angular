@@ -1,5 +1,3 @@
-import { NumericValueAccessor } from "@ionic/angular";
-
 export class Place {
   constructor(
     public id: string,
