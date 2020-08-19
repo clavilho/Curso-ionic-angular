@@ -2,12 +2,12 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button
-        [defaultHref]="'/places/tabs/offers/' + place.id"
+        [defaultHref]="'/places/tabs/offers/' + placeId"
       ></ion-back-button>
     </ion-buttons>
-    <ion-title>Editar Oferta</ion-title>
+    <ion-title>Edit Offer</ion-title>
     <ion-buttons slot="primary">
-      <ion-button (click)="onUpdateOffer()" [disabled]="!form.valid">
+      <ion-button (click)="onUpdateOffer()" [disabled]="!form?.valid">
         <ion-icon name="checkmark" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -15,7 +15,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form [formGroup]="form">
+  <div *ngIf="isLoading" class="ion-text-center">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <form [formGroup]="form" *ngIf="!isLoading">
     <ion-grid>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
@@ -33,7 +36,7 @@
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
-            <ion-label position="floating">Pequena descrição</ion-label>
+            <ion-label position="floating">Pequena Descrição</ion-label>
             <ion-textarea rows="3" formControlName="description"></ion-textarea>
           </ion-item>
         </ion-col>
@@ -44,7 +47,7 @@
         "
       >
         <ion-col size-sm="6" offset-sm="3">
-          <p>Descrição precisa ter entre 1 e 180 caracteres.</p>
+          <p>A descrição deve ter entre 1 e 180 caracteres.</p>
         </ion-col>
       </ion-row>
     </ion-grid>
