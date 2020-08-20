@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/places/tabs/offers"></ion-back-button>
     </ion-buttons>
-    <ion-title>Nova Oferta</ion-title>
+    <ion-title>New Offer</ion-title>
     <ion-buttons slot="primary">
       <ion-button (click)="onCreateOffer()" [disabled]="!form.valid">
         <ion-icon name="checkmark" slot="icon-only"></ion-icon>
@@ -42,7 +42,7 @@
         "
       >
         <ion-col size-sm="6" offset-sm="3">
-          <p>A descrição deve ter entre 1 e 180 caracteres.</p>
+          <p>Descrição deve conter entre 1 e 180 caracteres.</p>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -56,7 +56,7 @@
       <ion-row>
         <ion-col size-sm="3" offset-sm="3">
           <ion-item>
-            <ion-label position="floating">Disponivel a partir de</ion-label>
+            <ion-label position="floating">Disponivel de</ion-label>
             <ion-datetime
               min="2019-01-01"
               max="2025-12-31"
@@ -73,6 +73,11 @@
               formControlName="dateTo"
             ></ion-datetime>
           </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="3" offset-sm="3">
+          <app-location-picker></app-location-picker>
         </ion-col>
       </ion-row>
     </ion-grid>

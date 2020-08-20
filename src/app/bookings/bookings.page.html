@@ -3,19 +3,14 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Suas reservas</ion-title>
+    <ion-title>Suas Reservas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col
-        size-md="6"
-        offset-md="3"
-        class="ion-text-center"
-        *ngIf="isLoading"
-      >
+      <ion-col size-md="6" offset-md="3" class="ion-text-center" *ngIf="isLoading">
         <ion-spinner color="primary"></ion-spinner>
       </ion-col>
       <ion-col

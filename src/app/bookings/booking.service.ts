@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject } from "rxjs";
-import { take, tap, delay, switchMap, map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { take, tap, delay, switchMap, map } from 'rxjs/operators';
 
-import { Booking } from "./booking.model";
-import { AuthService } from "../auth/auth.service";
+import { Booking } from './booking.model';
+import { AuthService } from '../auth/auth.service';
 
 interface BookingData {
   bookedFrom: string;
@@ -18,7 +18,7 @@ interface BookingData {
   userId: string;
 }
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class BookingService {
   private _bookings = new BehaviorSubject<Booking[]>([]);
 
@@ -53,16 +53,16 @@ export class BookingService {
     );
     return this.http
       .post<{ name: string }>(
-        "https://ionic-angular-course-dc0c2.firebaseio.com/bookings.json",
+        'https://ionic-angular-course-dc0c2.firebaseio.com/bookings.json',
         { ...newBooking, id: null }
       )
       .pipe(
-        switchMap((resData) => {
+        switchMap(resData => {
           generatedId = resData.name;
           return this.bookings;
         }),
         take(1),
-        tap((bookings) => {
+        tap(bookings => {
           newBooking.id = generatedId;
           this._bookings.next(bookings.concat(newBooking));
         })
@@ -79,8 +79,8 @@ export class BookingService {
           return this.bookings;
         }),
         take(1),
-        tap((bookings) => {
-          this._bookings.next(bookings.filter((b) => b.id !== bookingId));
+        tap(bookings => {
+          this._bookings.next(bookings.filter(b => b.id !== bookingId));
         })
       );
   }
@@ -88,10 +88,12 @@ export class BookingService {
   fetchBookings() {
     return this.http
       .get<{ [key: string]: BookingData }>(
-        `https://ionic-angular-course-dc0c2.firebaseio.com/bookings.json?orderBy="userId"&equalTo="${this.authService.userId}"`
+        `https://ionic-angular-course-dc0c2.firebaseio.com/bookings.json?orderBy="userId"&equalTo="${
+          this.authService.userId
+        }"`
       )
       .pipe(
-        map((bookingData) => {
+        map(bookingData => {
           const bookings = [];
           for (const key in bookingData) {
             if (bookingData.hasOwnProperty(key)) {
@@ -113,7 +115,7 @@ export class BookingService {
           }
           return bookings;
         }),
-        tap((bookings) => {
+        tap(bookings => {
           this._bookings.next(bookings);
         })
       );
