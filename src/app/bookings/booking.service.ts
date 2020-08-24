@@ -53,7 +53,7 @@ export class BookingService {
     );
     return this.http
       .post<{ name: string }>(
-        'https://ionic-angular-course-dc0c2.firebaseio.com/bookings.json',
+        'https://ionic-angular-course-dc0c2.firebaseio.com/bookings.json.json',
         { ...newBooking, id: null }
       )
       .pipe(
@@ -88,7 +88,7 @@ export class BookingService {
   fetchBookings() {
     return this.http
       .get<{ [key: string]: BookingData }>(
-        `https://ionic-angular-course-dc0c2.firebaseio.com/bookings.json?orderBy="userId"&equalTo="${
+        `https://ionic-angular-course-dc0c2.firebaseio.com//bookings.json?orderBy="userId"&equalTo="${
           this.authService.userId
         }"`
       )
